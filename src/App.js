@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-    const nayoks = ["Anawar", "Jafor", "Kalimullah", 'Jamailla', 'kalam'];
+    const nayoks = ["Anawar", "Jafor", "Kalimullah", "Jamailla", "kalam"];
     const products = [
         { name: "Photoshop", price: "$78.32" },
         { name: "Illustrator", price: "$53.34" },
@@ -13,17 +13,29 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <p>My first React App</p>
+                <Counter></Counter>
                 <ul>
-                  {
-                    nayoks.map(nayok => <li>{nayok}</li>)
-                  }
+                    {nayoks.map((nayok) => (
+                        <li>{nayok}</li>
+                    ))}
                 </ul>
-                {products.map(product => <Product product={product}></Product>)}
+                {products.map((product) => (
+                    <Product product={product}></Product>
+                ))}
                 <Person name={nayoks[0]}></Person>
                 <Person name={nayoks[1]}></Person>
                 <Person name={nayoks[2]}></Person>
                 <Person></Person>
             </header>
+        </div>
+    );
+}
+
+function Counter() {
+    const [count, setCount] = useState(10);
+    return (
+        <div>
+            <h1>Count: {count}</h1>
         </div>
     );
 }
@@ -40,7 +52,7 @@ function Product(props) {
         color: "#222",
         margin: "10px",
     };
-    const {name, price} = props.product;
+    const { name, price } = props.product;
     return (
         <div style={productStyle}>
             <h3>{name}</h3>
