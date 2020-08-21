@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-    const nayoks = ["Anawar", "Jafor", "Kalimullah"];
+    const nayoks = ["Anawar", "Jafor", "Kalimullah", 'Jamailla', 'kalam'];
     const products = [
         { name: "Photoshop", price: "$78.32" },
         { name: "Illustrator", price: "$53.34" },
@@ -13,9 +13,12 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <p>My first React App</p>
-                <Product product={products[0]}></Product>
-                <Product product={products[1]}></Product>
-                <Product product={products[2]}></Product>
+                <ul>
+                  {
+                    nayoks.map(nayok => <li>{nayok}</li>)
+                  }
+                </ul>
+                {products.map(product => <Product product={product}></Product>)}
                 <Person name={nayoks[0]}></Person>
                 <Person name={nayoks[1]}></Person>
                 <Person name={nayoks[2]}></Person>
@@ -37,7 +40,7 @@ function Product(props) {
         color: "#222",
         margin: "10px",
     };
-    const {name, price} = props.product.name;
+    const {name, price} = props.product;
     return (
         <div style={productStyle}>
             <h3>{name}</h3>
