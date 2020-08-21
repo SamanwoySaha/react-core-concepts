@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -14,6 +14,7 @@ function App() {
             <header className="App-header">
                 <p>My first React App</p>
                 <Counter></Counter>
+                <Users></Users>
                 <ul>
                     {nayoks.map((nayok) => (
                         <li>{nayok}</li>
@@ -27,6 +28,28 @@ function App() {
                 <Person name={nayoks[2]}></Person>
                 <Person></Person>
             </header>
+        </div>
+    );
+}
+
+function Users() {
+    const [users, setUsers] = useState([]);
+    useEffect(() => {        
+            fetch("https://jsonplaceholder.typicode.com/users")
+            .then((res) => res.json())
+            .then((data) => setUsers(data));
+    }, []);
+    return (
+        <div>
+            <h1>Dynamic Users: {users.length}</h1>
+            <ul>
+              {
+                console.log(users)
+              }
+              {
+                users.map(user => <li>{user.name}</li>)
+              }
+            </ul>
         </div>
     );
 }
